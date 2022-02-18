@@ -13,7 +13,7 @@ resource "test_assertions" "step1" {
 
     got = module.step1.guest_hosts
     want = tomap({
-      "b1" = "a1"
+      "b1" = "a3"
       "b2" = "a3"
       "b3" = "a3"
       "b4" = "a3"
@@ -21,7 +21,7 @@ resource "test_assertions" "step1" {
     })
 
     # NOTE: When there's a similar number of hosts and guests, it's
-    # pretty likely that the guests won't distribute evenly over the
+    # pretty likely that the guests won't distribute very evenly over the
     # hosts. It should get more favorable when there are significantly
     # more guests than hosts.
   }
@@ -42,7 +42,7 @@ resource "test_assertions" "step2" {
 
     got = module.step2.guest_hosts
     want = tomap({
-      "b1" = "a1"
+      "b1" = "a3"
       "b2" = "a3"
       "b3" = "a3"
       # guest b4 is gone
@@ -66,10 +66,10 @@ resource "test_assertions" "step3" {
 
     got = module.step3.guest_hosts
     want = tomap({
-      "b1" = "a2" # Reassigned to new host a2
-      "b2" = "a3" # Unchanged
-      "b3" = "a3" # Unchanged
-      "b5" = "a2" # Reassigned to new host a2
+      "b1" = "a3" # Unchanged
+      "b2" = "a2" # Reassigned to new host a2
+      "b3" = "a2" # Reassigned to new host a2
+      "b5" = "a1" # Unchanged
     })
   }
 }

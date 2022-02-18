@@ -13,9 +13,9 @@ resource "test_assertions" "step1" {
 
     got = module.step1.guest_hosts
     want = tomap({
-      "b1" = "a2"
-      "b2" = "a3"
-      "b3" = "a3"
+      "b1" = "a3"
+      "b2" = "a2"
+      "b3" = "a2"
     })
 
     # NOTE: When there's a similar number of hosts and guests, it's
@@ -40,9 +40,9 @@ resource "test_assertions" "step2" {
 
     got = module.step2.guest_hosts
     want = tomap({
-      "b1" = "a2" # Unchanged, because a2 is still present
-      "b2" = "a4" # Reassigned, because a3 is gone
-      "b3" = "a2" # Reassigned, because a3 is gone
+      "b1" = "a4" # Reassigned, because a3 is gone
+      "b2" = "a2" # Unchanged, because a2 is still present
+      "b3" = "a2" # Unchanged, because a2 is still present
     })
   }
 }
@@ -63,9 +63,9 @@ resource "test_assertions" "step3" {
 
     got = module.step3.guest_hosts
     want = tomap({
-      "b1" = "a2" # Unchanged
-      "b2" = "a4" # Unchanged
-      "b4" = "a4" # A new guest
+      "b1" = "a4" # Unchanged
+      "b2" = "a2" # Unchanged
+      "b4" = "a2" # A new guest
     })
   }
 }

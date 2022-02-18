@@ -13,8 +13,8 @@ resource "test_assertions" "step1" {
 
     got = module.step1.guest_hosts
     want = tomap({
-      "b1" = "a2"
-      "b2" = "a4"
+      "b1" = "a3"
+      "b2" = "a5"
     })
   }
 }
@@ -34,9 +34,9 @@ resource "test_assertions" "step2" {
 
     got = module.step2.guest_hosts
     want = tomap({
-      "b1" = "a2" # Unchanged
-      "b2" = "a4" # Unchanged
-      "b3" = "a3" # New
+      "b1" = "a3" # Unchanged
+      "b2" = "a5" # Unchanged
+      "b3" = "a5" # New
     })
   }
 }
@@ -44,7 +44,7 @@ resource "test_assertions" "step2" {
 module "step3" {
   source = "../.."
 
-  hosts  = ["a1", "a2", "a3", "a5"]
+  hosts  = ["a1", "a2", "a4", "a5"]
   guests = ["b1", "b2", "b3"]
 }
 
@@ -56,9 +56,9 @@ resource "test_assertions" "step3" {
 
     got = module.step3.guest_hosts
     want = tomap({
-      "b1" = "a2" # Unchanged
-      "b2" = "a3" # Reassigned, because a4 is removed
-      "b3" = "a3" # Unchanged
+      "b1" = "a5" # Reassigned, because a3 is removed
+      "b2" = "a5" # Unchanged
+      "b3" = "a5" # Unchanged
     })
   }
 }
